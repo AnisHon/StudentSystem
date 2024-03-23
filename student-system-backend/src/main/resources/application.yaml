@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: student-system-backend
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/db02
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: anishan
+    password: Han123456
