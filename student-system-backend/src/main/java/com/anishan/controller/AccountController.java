@@ -13,6 +13,4 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @RequestMapping("/account")
-public class AccountController {
-
-}
+public class AccountController {}

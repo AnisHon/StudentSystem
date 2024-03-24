@@ -2,6 +2,10 @@ package com.anishan.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+import lombok.Getter;
+
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -13,8 +17,10 @@ import java.io.Serializable;
  * @since 2024-03-23
  */
 
+@Data
 public class Account implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "id", type = IdType.AUTO)
@@ -24,39 +30,7 @@ public class Account implements Serializable {
 
     private String password;
 
-    private Integer role;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Integer getRole() {
-        return role;
-    }
-
-    public void setRole(Integer role) {
-        this.role = role;
-    }
+    private String role;
 
     @Override
     public String toString() {
