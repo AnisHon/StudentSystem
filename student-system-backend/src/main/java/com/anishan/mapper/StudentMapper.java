@@ -24,4 +24,6 @@ public interface StudentMapper extends BaseMapper<Student> {
     @Select("select s.id as id, s.name as name, a.user_id as accountId from student s left join db02.account a on s.account_id = a.id")
     List<Student> selectStudent();
 
+    @Select("select s.id from student s left join account a on a.id = s.account_id where a.user_id = #{userId}")
+    Integer getStudentIdByUserId(String userId);
 }

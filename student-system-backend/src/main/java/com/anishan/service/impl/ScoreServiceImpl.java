@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,9 +27,11 @@ import java.util.List;
 public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements ScoreService {
 
     @Resource
-    StudentMapper studentMapper;
+    private StudentMapper studentMapper;
     @Resource
-    ScoreMapper scoreMapper;
+    private ScoreMapper scoreMapper;
+
+
     @Override
     public RestEntity<List<StudentScore>> getScores(String name) {
         List<StudentScore> studentScores = studentMapper.selectStudentToStudentScore(name);
@@ -43,5 +46,26 @@ public class ScoreServiceImpl extends ServiceImpl<ScoreMapper, Score> implements
     public String getScoreJson(String userId) {
         List<Score> scores = scoreMapper.selectScoresByUserId(userId);
         return RestEntity.success(scores, "success").toJson();
+    }
+
+    @Transactional
+    @Override
+    public String addScore(String userId, String project, Integer score) {
+        Integer id = null;
+        try {
+            id = studentMapper.getStudentIdByUserId(userId);
+            if (id == null) {
+                return RestEntity.failure(400, "坏请求").toJson();
+            }
+        } catch (Exception e) {
+            return RestEntity.failure(400, "坏请求").toJson();
+        }
+
+        int i = scoreMapper.insertScoreById(id, score, project);
+        if (i == 0) {
+            return RestEntity.failure(406, "添加失败").toJson();
+        }
+
+        return RestEntity.success("", "success").toJson();
     }
 }

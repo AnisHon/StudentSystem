@@ -33,7 +33,7 @@ public class SecurityConfig {
     AccountService accountService;
 
     final String[] teacherOnlyAuth = {
-            "/api/scores", "/students"
+            "/api/scores", "/students", "/api/exist"
     };
 
     final String[] studentOnlyAuth = {

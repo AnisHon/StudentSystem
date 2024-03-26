@@ -1,16 +1,15 @@
 package com.anishan.controller;
 
+import com.anishan.entity.Account;
 import com.anishan.entity.RestEntity;
 import com.anishan.entity.UserInfo;
 import com.anishan.service.AccountService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import jakarta.annotation.Resource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import static com.anishan.entity.RestEntity.failure;
 
@@ -42,5 +41,17 @@ public class AccountController {
         }
         return RestEntity.success(userInfoByUserId, "success").toJson();
     }
+
+
+    @ResponseBody
+    @GetMapping(value = "/exist/{userId}", produces = "application/json")
+    public String isExisted(@PathVariable String userId) {
+        Boolean result = accountService.count(
+                new QueryWrapper<Account>().eq("user_id", userId).ne("role", "teacher")
+        ) == 1;
+        return RestEntity.success(result, "success").toJson();
+    }
+
+
 
 }

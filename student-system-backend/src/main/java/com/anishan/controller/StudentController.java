@@ -2,6 +2,7 @@ package com.anishan.controller;
 
 import com.anishan.service.StudentService;
 import jakarta.annotation.Resource;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
@@ -31,4 +32,7 @@ public class StudentController {
     public String getStudents() {
         return studentService.getStudentAsJson("");
     }
+
+
+
 }

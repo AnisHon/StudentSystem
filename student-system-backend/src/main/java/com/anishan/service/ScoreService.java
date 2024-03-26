@@ -20,4 +20,6 @@ public interface ScoreService extends IService<Score> {
     RestEntity<List<StudentScore>> getScores(String name);
 
     String getScoreJson(String userId);
+
+    String addScore(String userId, String subject, Integer score);
 }

@@ -2,11 +2,9 @@ package com.anishan.controller;
 
 import com.anishan.service.ScoreService;
 import jakarta.annotation.Resource;
-import jakarta.websocket.server.PathParam;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.web.server.context.ServerSecurityContextRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
 
@@ -45,5 +43,13 @@ public class ScoreController {
 
         return scoreService.getScoreJson(principal.getUsername());
     }
+    @ResponseBody
+    @PostMapping(value = "/add-score", produces = "application/json")
+    public String addStore(@RequestParam("name") String userId, @RequestParam Integer score, @RequestParam String subject) {
+        System.out.println(userId + subject + score);
+        return scoreService.addScore(userId, subject, score);
+    }
+
+
 
 }

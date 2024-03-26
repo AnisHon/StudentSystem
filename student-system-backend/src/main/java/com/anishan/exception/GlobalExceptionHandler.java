@@ -36,6 +36,7 @@ public class GlobalExceptionHandler {
         if (ex instanceof NoResourceFoundException noResourceFoundException) {
             return RestEntity.failure(403, "错误请求：" + noResourceFoundException.getMessage()).toJson();
         }
+        System.out.println(ex.getMessage());
         return  RestEntity.failure(500, "致命错误").toJson();
     }
 
