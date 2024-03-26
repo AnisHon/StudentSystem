@@ -2,12 +2,14 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/stores/user.js'
 
-const userStore = useUserStore()
 const baseUrl = "http://localhost:8080"
 axios.defaults.baseURL = baseUrl
 
 const defaultError = () => {ElMessage.error("发生未知错误")}
-const defaultFailure = (message) => {
+const defaultFailure = (code, message) => {
+    if (code === 403) {
+        ElMessage.warning("拒绝访问")
+    }
     ElMessage.warning(message)
 }
 
@@ -21,7 +23,7 @@ function post(url, data, success, failure = defaultFailure, error = defaultError
         }).then(({data}) => {
             if (data.code === 200) {
                 success(data)
-            }  else {
+            } else {
                 failure(data.code, data.message);
             }
     }).catch(error)

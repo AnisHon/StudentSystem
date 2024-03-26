@@ -1,9 +1,16 @@
 <template>
-  <div class="container">
-    <div class="login-form">
-      <login-component class="login-item"/>
+  <div class="outside">
+    <div class="container">
+      <div class="login-form">
+        <login-component class="login-item"/>
+      </div>
+
+    </div>
+    <div class="video-background">
+      <video class="video-item" src="@/assets/back.mp4" loop preload="auto" playsinline autoplay muted></video>
     </div>
   </div>
+
 
 </template>
 
@@ -45,11 +52,20 @@ import LoginComponent from "@/components/LoginComponent.vue";
 
   width: 100%;
   height: 100%;
+  background-color: transparent;
 
-  background: url("@/assets/login/background.png") center no-repeat;
-  background-size: cover;
 }
-
+.outside {
+  position: relative;
+}
+.video-item{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  object-fit: cover;
+  z-index: -1;
+}
 
 
 

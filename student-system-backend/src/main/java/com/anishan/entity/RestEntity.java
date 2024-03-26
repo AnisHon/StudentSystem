@@ -20,8 +20,7 @@ public class RestEntity<T> {
         return new RestEntity<T>(200, data, message);
     }
 
-    public static <T> RestEntity<T> failure(int code, String message) {
-        return new RestEntity<T>(code, null, message);
+    public static RestEntity<String> failure(int code, String message) { return new RestEntity<String>(code, null, message);
     }
 
     public String toJson() {

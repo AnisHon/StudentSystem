@@ -1,7 +1,11 @@
 package com.anishan.service;
 
+import com.anishan.entity.RestEntity;
 import com.anishan.entity.Score;
+import com.anishan.entity.StudentScore;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface ScoreService extends IService<Score> {
 
+    RestEntity<List<StudentScore>> getScores(String name);
+
+    String getScoreJson(String userId);
 }

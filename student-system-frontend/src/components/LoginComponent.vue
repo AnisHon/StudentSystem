@@ -66,23 +66,11 @@ import {ElMessage} from "element-plus";
 import {Lock, User} from "@element-plus/icons-vue"
 import {get, post} from "@/http/index.js"
 import router from "@/router/index.js";
+import {useUserStore} from "@/stores/user.js";
+
 const ruleFormRef = ref()
-const checkAge = (rule, value, callback) => {
-  if (!value) {
-    return callback(new Error('Please input the age'))
-  }
-  setTimeout(() => {
-    if (!Number.isInteger(value)) {
-      callback(new Error('Please input digits'))
-    } else {
-      if (value < 18) {
-        callback(new Error('Age must be greater than 18'))
-      } else {
-        callback()
-      }
-    }
-  }, 1000)
-}
+const userStore = useUserStore()
+
 
 const validatePass = (rule, value, callback) => {
   if (value === '') {
@@ -120,6 +108,9 @@ const submitFunction = () => {
       (data) => {
         ElMessage.success(data.message)
         router.push("/")
+        console.log(data.data)
+
+        userStore.setUser(data.data)
       }
   )
 

@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2024-03-23
  */
 public interface StudentService extends IService<Student> {
-
+    String getStudentAsJson(String name);
 }

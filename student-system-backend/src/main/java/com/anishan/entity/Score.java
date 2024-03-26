@@ -1,10 +1,9 @@
 package com.anishan.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -26,19 +25,10 @@ public class Score implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @TableField("score")
     private Integer score;
 
+    @TableField("project_name")
     private String projectName;
 
-    private Integer studentId;
-
-    @Override
-    public String toString() {
-        return "Score{" +
-        "id = " + id +
-        ", score = " + score +
-        ", projectName = " + projectName +
-        ", studentId = " + studentId +
-        "}";
-    }
 }
