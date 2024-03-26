@@ -7,14 +7,14 @@
       <div class="row">
         <div class="col-1">
 
-            <Header @emitData="search" class="header"/>
-            <div class="table">
-              <el-table :data="tableData" style="height: 100%;background-color: rgba(100, 100, 100, 0.15)" >
-                <el-table-column prop="studentId" label="学号" width="160" />
-                <el-table-column prop="name" label="姓名" width="160" />
-                <el-table-column prop="score" label="分数" width="" />
-              </el-table>
-            </div>
+          <Header @emitData="search" class="header"/>
+          <div class="table">
+            <el-table :data="tableData" style="height: 100%;background-color: rgba(100, 100, 100, 0.15)" >
+              <el-table-column prop="studentId" label="学号" width="160" />
+              <el-table-column prop="name" label="姓名" width="160" />
+              <el-table-column prop="score" label="分数" width="" />
+            </el-table>
+          </div>
 
         </div>
 

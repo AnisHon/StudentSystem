@@ -38,6 +38,11 @@ const routes = [
         path: "student-score",
         name: "StudentScore",
         component: () => import("@/views/indexView/StudentScoreView.vue")
+      },
+      {
+        path:"add-score",
+        name: "AddScore",
+        component: () => import("@/views/indexView/AddScore.vue")
       }
     ]
   },

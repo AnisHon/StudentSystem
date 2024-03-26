@@ -189,7 +189,4 @@ const logout = () => {
 
 }
 
-div {
-
-}
 </style>

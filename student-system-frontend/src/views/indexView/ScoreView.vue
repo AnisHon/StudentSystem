@@ -1,13 +1,14 @@
 <template>
-  <div class="student-view">
+  <div class="score-view">
 
     <div class="table">
 
 
       <el-row class="row" style="height: 100%;display: flex;justify-content: center;align-items: center">
 
-        <div style="width: 50%; height: 85%; background-color: white;padding: 20px">
+        <div class="row-container" style="width: 50%; height: 85%; background-color: rgba(100, 100, 100, 0.15);padding: 20px">
             <h1 style="text-align: center;">成绩</h1>
+          <div>
             <h3>用户信息</h3>
             <el-descriptions style="width: 100%;" >
               <el-descriptions-item label="学生姓名">{{ userInfo.username }}</el-descriptions-item>
@@ -29,12 +30,18 @@
                 {{ userInfo.fail === 0 ? '未挂科' : '共挂' + userInfo.fail + '门'}}
               </el-descriptions-item>
             </el-descriptions>
+          </div>
+            <h3 >成绩信息</h3>
+            <div class="wrapper" style="height: 100%">
 
-          <h3 >成绩信息</h3>
-            <el-table :data="tableData" stripe style=" width: 100%" >
-              <el-table-column prop="projectName" label="科目" width="" />
-              <el-table-column prop="score" label="分数" width="" />
-            </el-table>
+
+                <el-table :data="tableData" style=" width: 100%; height: 100%;background-color: rgba(100, 100, 100, 0.15)" >
+                  <el-table-column prop="projectName" label="科目" width="" />
+                  <el-table-column prop="score" label="分数" width="" />
+                </el-table>
+
+            </div>
+
 
 
         </div>
@@ -96,36 +103,74 @@ get("/api/my-score", (data) => {
 
 </script>
 
-<style scoped>
-.student-view {
+<style>
+.score-view {
   box-sizing: border-box;
   max-height: 100%;
   width: 100%;
   height: 100%;
   padding: 20px;
-.row,
-.table{
-  height: 100%;
+  .row,
+  .table{
+    height: 100%;
+  }
+
+
+  .row {
+    height: 100%;
+    .el-table {
+      border-radius: 20px;
+        .el-table__inner-wrapper {
+          background-color: rgba(100, 100, 100, 0.15);
+          padding: 10px;
+        }
+        tr,
+        .el-table__header th {
+          background-color: transparent;
+        }
+        .el-table__header th {
+          color: white;
+        }
+        tr {
+          color: #E5EAF3;
+        }
+        .el-table__row:hover td{
+          background-color: rgba(0, 0, 0, 0.3);
+          color: antiquewhite;
+        }
+    }
+    .row-container {
+      display: flex;
+      flex-direction: column;
+      border-radius: 30px;
+
+      .el-table__inner-wrapper::before {
+        background-color: transparent;
+      }
+      .el-descriptions__cell {
+        .el-descriptions__label {
+          color: white;
+        }
+        .el-descriptions__content {
+          color: #E5EAF3;
+        }
+      }
+
+      .el-descriptions__body {
+        background-color: rgba(100, 100, 100, 0.3);
+        border-radius: 20px;
+        padding-left: 20px;
+      }
+
+
+    }
+    h1,
+    h3 {
+      color: white;
+    }
+  }
 }
 
-}
 
 
-.header {
-
-  height: 220px;
-  margin-bottom: 20px;
-  background-color: rgba(100, 100, 100, 0.5);
-}
-
-.sider {
-  background-color: rgba(100, 100, 100, 0.5);
-  margin-left: 10px;
-  width: 97%;
-  //margin: 0 20px;
-}
-.row {
-  height: 100%;
-
-}
 </style>

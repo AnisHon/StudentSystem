@@ -4,9 +4,10 @@
       <el-menu
           default-active="/"
           class="nav-vertical"
-          background-color="#2B0967"
+          background-color="Transparent"
           text-color="#FFFFFF"
           :router="true"
+
       >
         <el-menu-item index="/">
           <template #title>
@@ -34,6 +35,7 @@
             <el-icon><icon-menu /></el-icon>
             <span>教育管理</span>
           </template>
+          <el-menu-item index="">成绩录入</el-menu-item>
           <el-menu-item index="/student">学生查询</el-menu-item>
           <el-menu-item index="/student-score">学生成绩查询</el-menu-item>
 
